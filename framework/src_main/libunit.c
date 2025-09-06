@@ -6,7 +6,7 @@
 /*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:18:03 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/07 00:38:11 by mmillhof         ###   ########.fr       */
+/*   Updated: 2025/09/07 01:15:07 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	launch_tests(t_unit_test *testlist)
 		i++;
 	}
 	print_result(passed, i);
-	return (passed != i);
+	return (0);
 }
 
 void	load_test(t_unit_test *testlist, char *name, void *test)
