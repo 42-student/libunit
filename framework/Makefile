@@ -25,7 +25,6 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@echo "$(CYAN) Making Libunit.a!!!!$(RESET)";
 	@# Getting libft from Github if it's not present
 	@if [ ! -d "$(LIBFT_DIR)" ]; then \
 		echo "Cloning libft from $(GET_LIBFT_REPO)..."; \
@@ -39,9 +38,12 @@ $(NAME): $(OBJS)
 		ar rcs $@ $(OBJS) $(LIBFT); \
 	else \
 		ar rcs $@ $(OBJS); \
-	fi
+	fi	
+	@echo "$(CYAN)LIBUNIT BUILT!!!!$(RESET)";
+
+
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(LIBFT_INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) $(LIBFT_INCLUDES) -c $< -o $@
 
 .PHONY: get_libft
 get_libft:
@@ -56,7 +58,6 @@ $(OBJ_DIR):
 
 clean:
 	$(RM) $(OBJS)
-	$(RM) -r $(LIBFT_DIR)
 
 fclean: clean
 	$(RM) $(NAME)
