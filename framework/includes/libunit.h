@@ -19,6 +19,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 
+# include "color.h"
+
 typedef struct s_unit_test
 {
 	int		(*test)(void);
