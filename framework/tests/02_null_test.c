@@ -6,7 +6,7 @@
 /*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 12:12:55 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/06 12:56:56 by mmillhof         ###   ########.fr       */
+/*   Updated: 2025/09/06 13:21:38 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 int	null_test(void)
 {
-//	int	a;
+	int		a;
+	char	*test;
 
-//	a = strlen(NULL);
+	test = NULL;
+	a = strlen(test);
 	printf(">>> NULL <<<\n");
 	return (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:32:13 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/06 13:07:20 by mmillhof         ###   ########.fr       */
+/*   Updated: 2025/09/06 13:22:57 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,20 @@
 int		launch_tests(t_unit_test *testlist);
 void	load_test(t_unit_test *testlist, char *name, void *test);
 
-int strlen_launcher(void)
+int	strlen_launcher(void)
 {
-	t_unit_test *testlist;
+	t_unit_test	*testlist;
 	int			ret;
-	
+
 	testlist = malloc(100 * sizeof(t_unit_test));
 	testlist[0].test = NULL;
 	load_test(testlist, "Basic test", &basic_test);
 	load_test(testlist, "NULL test", &null_test);
-	//load_test(&testlist, "Bigger string test", &bigger_str_test); /* This test won't be loaded */
+	/*l0oad_test(&testlist, "Bigger string test", &bigger_str_test);
+	This test won't be loaded */
 	ret = launch_tests(testlist);
 	free(testlist);
-	return(ret);
+	return (ret);
 }
 
 int	launch_tests(t_unit_test *testlist)
@@ -44,11 +45,10 @@ int	launch_tests(t_unit_test *testlist)
 		pid = fork();
 		if (pid == 0)
 		{
-			printf("%p\n", testlist[i].test);
 			ret = testlist[i].test();
 			exit (ret);
 		}
-		printf("name: %s\n", testlist[i].name);
+		printf("testing: %s\n", testlist[i].name);
 		while (wait(&status) > 0)
 			;
 		printf("status: %i:\n\n", WEXITSTATUS(status));
