@@ -6,7 +6,7 @@
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 18:57:05 by smargine          #+#    #+#             */
-/*   Updated: 2025/09/06 18:59:19 by smargine         ###   ########.fr       */
+/*   Updated: 2025/09/06 19:22:43 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	main(int argc, char **argv)
 {
+	int		ret;
+
 	(void) argc;
 	(void) argv;
-	return (basic_tests_launcher());
+	ret = basic_tests_launcher();
+	return (ret);
 }
