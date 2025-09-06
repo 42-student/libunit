@@ -22,4 +22,4 @@ After each test execution, the framework captures the result and reports it in a
 At the end of the test execution, the framework will display the total number of tests run and the count of successful tests.
 If all tests pass, the program will exit with a return value of 0; if any test fails, it will return -1.
 
-#### ✅ This micro-framework provides a robust and organized approach to testing C functions, making it easier for developers to validate their code and ensure reliability.
+#### ✅ This micro-framework provides a robust and organized approach to testing C functions, making it easier for developers to validate their code and ensure reliability..
