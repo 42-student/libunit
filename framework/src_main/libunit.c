@@ -6,7 +6,7 @@
 /*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:18:03 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/07 00:18:47 by mmillhof         ###   ########.fr       */
+/*   Updated: 2025/09/07 00:38:11 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ static int	print_status(int status)
 			write(1, RED" [SEGV]\n"RESET, 17);
 		if (WTERMSIG(status) == SIGBUS)
 			write(1, RED" [BUS]\n"RESET, 16);
+		if (WTERMSIG(status) == SIGABRT)
+			write(1, RED" [ABRT]\n"RESET, 17);
+		if (WTERMSIG(status) == SIGFPE)
+			write(1, RED" [FPE] (Arithmetic error!)\n"RESET, 36);
 	}
 	else
 	{
