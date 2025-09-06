@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   02_null_test.c                                     :+:      :+:    :+:   */
+/*   basic_tests.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/06 12:12:55 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/06 13:21:38 by mmillhof         ###   ########.fr       */
+/*   Created: 2025/09/06 12:10:04 by mmillhof          #+#    #+#             */
+/*   Updated: 2025/09/06 15:53:45 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "basic_tests.h"
-#include "libunit.h"
+#ifndef BASIC_TESTS_H
+# define BASIC_TESTS_H
 
-int	null_test(void)
-{
-	int		a;
-	char	*test;
+# include "libunit.h"
+# include <string.h>
 
-	test = NULL;
-	a = strlen(test);
-	printf(">>> NULL <<<\n");
-	return (-1);
-}
+int	strlen_launcher(void);
+int	basic_test(void);
+int	null_test(void);
+
+#endif

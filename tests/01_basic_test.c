@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   basic_tests.h                                      :+:      :+:    :+:   */
+/*   01_basic_test.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/06 12:10:04 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/06 12:35:55 by mmillhof         ###   ########.fr       */
+/*   Created: 2025/09/06 12:12:55 by mmillhof          #+#    #+#             */
+/*   Updated: 2025/09/06 16:22:12 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASIC_TESTS_H
-# define BASIC_TESTS_H
+#include "basic_tests.h"
+#include "libunit.h"
 
-# include <string.h>
+int	basic_test(void)
+{
+	int	a;
 
-int	basic_test(void);
-int	null_test(void);
-
-#endif
+	a = strlen("test");
+	if (a == 4)
+		return (0);
+	else
+		return (-1);
+}
