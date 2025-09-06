@@ -3,92 +3,100 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpandya <tpandya@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 15:37:45 by tpandya           #+#    #+#             */
-/*   Updated: 2025/05/07 15:37:48 by tpandya          ###   ########.fr       */
+/*   Created: 2025/05/18 15:24:42 by mmillhof          #+#    #+#             */
+/*   Updated: 2025/05/22 14:04:22 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	word_count(char const *s, char c)
-{
-	int	count;
-
-	count = 0;
-	while (*s)
-	{
-		if (*s == c)
-			s++;
-		else
-		{
-			count++;
-			while (*s && *s != c)
-				s++;
-		}
-	}
-	return (count);
-}
-
-static int	word_length(char const *s, char c)
-{
-	int	count;
-
-	count = 0;
-	while (s[count] != c && s[count] != '\0')
-		count++;
-	return (count);
-}
-
-static void	free_memory(char **str, int index)
-{
-	while (index >= 0)
-		free(str[index--]);
-	free(str);
-}
-
-char	*ft__strncpy(char *dest, const char *src, unsigned int n)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (src[i] && i < n)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	while (i < n)
-	{
-		dest[i] = '\0';
-		i++;
-	}
-	return (dest);
-}
+static int	ft_find_splits(char const *s, char c);
+static int	ft_copy_splits(char **arr, char const *s, char c);
+static void	free_arr(char **arr, size_t idx);
 
 char	**ft_split(char const *s, char c)
 {
-	int		i;
-	char	**str;
+	char	**arr;
+	int		idx;
 
-	str = (char **)malloc(sizeof(char *) * (word_count(s, c) + 1));
-	if (!s || !str)
+	arr = malloc((ft_find_splits(s, c) + 1) * sizeof(char *));
+	if (!arr)
 		return (NULL);
-	i = 0;
-	while (*s)
+	idx = ft_copy_splits (arr, s, c);
+	if (idx != -1)
 	{
-		if (*s == c)
-			s++;
-		else
-		{
-			str[i] = ft_strnew(word_length(s, c));
-			if (!(str[i]))
-				return (free_memory(str, i - 1), NULL);
-			ft__strncpy(str[i], s, word_length(s, c));
-			s += word_length(s, c);
-			i++;
-		}
+		free_arr(arr, idx);
+		free(arr);
+		return (NULL);
 	}
-	str[i] = NULL;
-	return (str);
+	return (arr);
+}
+
+static int	ft_copy_splits(char **arr, char const *s, char c)
+{
+	int		found;
+	size_t	pos;
+	size_t	idx;
+
+	found = -1;
+	pos = 0;
+	idx = 0;
+	while (1)
+	{
+		if (s[pos] != c && found == -1)
+			found = pos;
+		else if ((s[pos] == c || s[pos] == '\0') && found >= 0)
+		{
+			arr[idx] = ft_substr(s, found, pos - found);
+			if (!arr[idx])
+				return (idx);
+			found = -1;
+			idx++;
+		}
+		if (!s[pos])
+			break ;
+		pos++;
+	}
+	arr[idx] = NULL;
+	return (-1);
+}
+
+static int	ft_find_splits(char const *s, char c)
+{
+	int		found;
+	size_t	pos;
+	size_t	idx;
+
+	found = -1;
+	pos = 0;
+	idx = 0;
+	while (1)
+	{
+		if (s[pos] != c && found == -1)
+			found = pos;
+		else if ((s[pos] == c || s[pos] == '\0') && found >= 0)
+		{
+			found = -1;
+			idx++;
+		}
+		if (!s[pos])
+			break ;
+		pos++;
+	}
+	return (idx);
+}
+
+static void	free_arr(char **arr, size_t idx)
+{
+	size_t	i;
+
+	i = 0;
+	while (i <= idx)
+	{
+		free(arr[i]);
+		i++;
+	}
+	return ;
 }

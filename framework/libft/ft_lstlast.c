@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpandya <tpandya@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 15:35:37 by tpandya           #+#    #+#             */
-/*   Updated: 2025/05/07 15:35:38 by tpandya          ###   ########.fr       */
+/*   Created: 2025/05/19 15:17:40 by mmillhof          #+#    #+#             */
+/*   Updated: 2025/05/23 12:23:07 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	if (!lst)
-		return (NULL);
+	if (lst == NULL)
+		return (lst);
 	while (lst->next)
-	{
 		lst = lst->next;
-	}
 	return (lst);
 }

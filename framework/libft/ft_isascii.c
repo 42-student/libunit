@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpandya <tpandya@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 15:33:48 by tpandya           #+#    #+#             */
-/*   Updated: 2025/05/07 15:33:49 by tpandya          ###   ########.fr       */
+/*   Created: 2025/05/12 11:17:01 by mmillhof          #+#    #+#             */
+/*   Updated: 2025/05/23 12:17:39 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isascii(int c)
 {
-	return ((c >= 0 && c <= 127));
+	return (c >= 0 && c <= 127);
 }

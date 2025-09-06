@@ -8,7 +8,7 @@ RESET := \033[0m
 
 NAME = unit_test
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -Iincludes
+CFLAGS = -Wall -Werror -Wextra -g -Iincludes
 
 # GET_LIBFT_REPO = https://github.com/tpandya42/Libft.git
 # LIBFT_DIR = libft
@@ -21,7 +21,7 @@ MAIN = main.c
 
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS)) $(OBJ_DIR)/main.o
-
+EXEC = ./unit_test
 
 FRAMEWORK_DIR = ../framework
 FRAMEWORK = $(FRAMEWORK_DIR)/libunit.a
@@ -84,9 +84,12 @@ get_libft:
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
+test: all
+	$(EXEC)
 
 clean:
 	$(RM) $(OBJS)
+	@make -C$(LIBFT_DIR) clean
 	@if [ -d $(FRAMEWORK_DIR) ]; then $(MAKE) -C $(FRAMEWORK_DIR) clean; fi
 
 fclean: clean

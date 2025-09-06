@@ -3,57 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpandya <tpandya@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 15:32:41 by tpandya           #+#    #+#             */
-/*   Updated: 2025/05/07 15:32:43 by tpandya          ###   ########.fr       */
+/*   Created: 2025/05/15 15:48:31 by mmillhof          #+#    #+#             */
+/*   Updated: 2025/05/21 13:26:13 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static long long	parser(const char *s, int sign)
+int	ft_atoi(const char *nptr)
 {
-	long long	result;
+	size_t	i;
+	int		sign;
+	int		nbr;
 
-	result = 0;
-	while (*s && ft_isdigit(*s))
-	{
-		if (result > (LLONG_MAX - (*s - '0')) / 10)
-		{
-			if (sign > 0)
-				return (INT_MAX);
-			else
-				return (INT_MIN);
-		}
-		result = result * 10 + (*s - '0');
-		s++;
-	}
-	return (result);
-}
-
-int	ft_atoi(const char *s)
-{
-	int				sign;
-
-	if (!s)
-		return (0);
+	i = 0;
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
+		i++;
 	sign = 1;
-	while (*s && ft_iswhitespace(*s))
-		s++;
-	if (*s == '+' || *s == '-')
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		if (*s == '-')
+		if (nptr[i] == '-')
 			sign = -1;
-		s++;
+		i++;
 	}
-	return ((int)(parser(s, sign) * sign));
+	nbr = 0;
+	while (nptr[i] && nptr[i] >= '0' && nptr[i] <= '9')
+		nbr = nbr * 10 + (nptr[i++] - '0');
+	return (nbr * sign);
 }
-/*
-#include <stdio.h>
-int	main (void)
-{
-	printf("%d\n", ft_atoi("--213"));
-	return (0);
-}
-*/

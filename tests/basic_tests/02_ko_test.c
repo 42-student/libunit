@@ -6,14 +6,14 @@
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 18:54:12 by smargine          #+#    #+#             */
-/*   Updated: 2025/09/06 18:56:09 by smargine         ###   ########.fr       */
+/*   Updated: 2025/09/06 23:47:13 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "basic_tests.h"
 #include "libunit.h"
 
-int ko_test(void)
+int	ko_test(void)
 {
 	return (-1);
 }

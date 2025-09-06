@@ -6,14 +6,14 @@
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 18:52:32 by smargine          #+#    #+#             */
-/*   Updated: 2025/09/06 18:56:00 by smargine         ###   ########.fr       */
+/*   Updated: 2025/09/06 23:46:57 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "basic_tests.h"
 #include "libunit.h"
 
-int ok_test(void)
+int	ok_test(void)
 {
 	return (0);
 }

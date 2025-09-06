@@ -6,17 +6,17 @@
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 16:36:06 by smargine          #+#    #+#             */
-/*   Updated: 2025/09/06 19:34:35 by mmillhof         ###   ########.fr       */
+/*   Updated: 2025/09/06 23:47:50 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "basic_tests.h"
 #include "libunit.h"
 
-int segv_test(void)
+int	segv_test(void)
 {
-	int *a;
-	
+	int	*a;
+
 	a = NULL;
 	*a = 5;
 	if (*a == 5)

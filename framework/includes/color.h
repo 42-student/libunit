@@ -6,12 +6,12 @@
 /*   By: tpandya <tpandya@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 16:26:46 by tpandya           #+#    #+#             */
-/*   Updated: 2025/09/06 16:26:52 by tpandya          ###   ########.fr       */
+/*   Updated: 2025/09/06 23:49:07 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLORS_H
-# define COLORS_H
+#ifndef COLOR_H
+# define COLOR_H
 
 // --- ANSI reset and style codes --- //
 # define RESET   "\033[0m"

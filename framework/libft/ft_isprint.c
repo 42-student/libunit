@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpandya <tpandya@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 15:34:09 by tpandya           #+#    #+#             */
-/*   Updated: 2025/05/07 15:34:10 by tpandya          ###   ########.fr       */
+/*   Created: 2025/05/12 11:24:22 by mmillhof          #+#    #+#             */
+/*   Updated: 2025/05/23 12:17:23 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isprint(int c)
 {
-	return ((c >= 32 && c <= 126));
+	return (c >= 32 && c <= 126);
 }

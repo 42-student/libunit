@@ -6,14 +6,14 @@
 /*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:18:03 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/06 19:55:41 by mmillhof         ###   ########.fr       */
+/*   Updated: 2025/09/07 00:18:47 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
 
-static int		print_status(int status);
-static void	print_passed(int passed, int total);
+static int	print_status(int status);
+static void	print_result(int passed, int total);
 
 int	launch_tests(t_unit_test *testlist)
 {
@@ -31,6 +31,7 @@ int	launch_tests(t_unit_test *testlist)
 		if (pid == 0)
 		{
 			ret = testlist[i].test();
+			free(testlist);
 			exit (ret);
 		}
 		write(1, testlist[i].name, ft_strlen(testlist[i].name));
@@ -39,8 +40,8 @@ int	launch_tests(t_unit_test *testlist)
 		passed += !print_status(status);
 		i++;
 	}
-	print_passed(passed, i);
-	return (0);
+	print_result(passed, i);
+	return (passed != i);
 }
 
 void	load_test(t_unit_test *testlist, char *name, void *test)
@@ -61,37 +62,39 @@ static int	print_status(int status)
 	if (WIFSIGNALED(status))
 	{
 		if (WTERMSIG(status) == SIGSEGV)
-			write(1, " [SEGV]\n", 8);
+			write(1, RED" [SEGV]\n"RESET, 17);
 		if (WTERMSIG(status) == SIGBUS)
-			write(1, " [BUS]\n", 7);
+			write(1, RED" [BUS]\n"RESET, 16);
 	}
 	else
 	{
 		if (WEXITSTATUS(status) == 0)
 		{
-			write(1, " [OK]\n", 6);
+			write(1, GREEN" [OK]\n"RESET, 15);
 			return (0);
 		}
 		else
-			write(1, " [FAIL]\n", 8);
+			write(1, RED" [KO]\n"RESET, 15);
 	}
 	return (1);
 }
 
-static void	print_passed(int passed, int total)
+static void	print_result(int passed, int total)
 {
-	char *num1;
-	char *num2;
+	char	*num;
 
 	write(1, "passed ", 7);
-	num1 = ft_itoa(passed);
-	if (num1)
-		write(1, num1, ft_strlen(num1));
+	num = ft_itoa(passed);
+	if (num)
+		write(1, num, ft_strlen(num));
 	write(1, "/", 1);
-	num2 = ft_itoa(total);
-	if (num2)
-		write(1, num2, ft_strlen(num2));
-	write(1, "\n", 1);
-	free(num1);
-	free(num2);
+	free(num);
+	num = ft_itoa(total);
+	if (num)
+		write(1, num, ft_strlen(num));
+	if (passed == total)
+		write(1, GREEN"\nAll tests passed!\n"RESET, 28);
+	else
+		write(1, RED" [KO]\n"RESET, 15);
+	free(num);
 }

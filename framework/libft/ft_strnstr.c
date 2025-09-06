@@ -3,34 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpandya <tpandya@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/11 18:38:30 by tpandya           #+#    #+#             */
-/*   Updated: 2025/05/11 18:39:02 by tpandya          ###   ########.fr       */
+/*   Created: 2025/05/15 14:56:21 by mmillhof          #+#    #+#             */
+/*   Updated: 2025/05/16 17:14:57 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	const unsigned char	*str;
-	const unsigned char	*tofind;
-	size_t				i;
-	size_t				j;
+	size_t	i;
+	size_t	j;
 
-	str = (const unsigned char *)haystack;
-	tofind = (const unsigned char *)needle;
-	if (*tofind == '\0')
-		return ((char *)str);
+	if (little[0] == 0)
+		return ((char *) big);
 	i = 0;
-	while (str[i] != '\0' && i < len)
+	while (big[i] && i < len)
 	{
-		j = 0;
-		while (str[i + j] == tofind[j] && tofind[j] != '\0' && (i + j) < len)
-			j++;
-		if (tofind[j] == '\0')
-			return ((char *)&str[i]);
+		if (big[i] == little[0])
+		{
+			j = 0;
+			while (little[j] && (i + j) < len)
+			{
+				if (big[i + j] != little[j])
+					break ;
+				j++;
+			}
+			if (little[j] == 0)
+				return ((char *) &big[i]);
+		}
 		i++;
 	}
 	return (NULL);
