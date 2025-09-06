@@ -6,11 +6,12 @@
 /*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:18:03 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/06 16:44:51 by mmillhof         ###   ########.fr       */
+/*   Updated: 2025/09/06 19:34:20 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
+#include <string.h>
 
 static int		print_status(int status);
 
@@ -32,7 +33,6 @@ int	launch_tests(t_unit_test *testlist)
 			ret = testlist[i].test();
 			exit (ret);
 		}
-		write (1, "TEST: ", 6);
 		write(1, testlist[i].name, strlen(testlist[i].name));
 		while (wait(&status) > 0)
 			;
