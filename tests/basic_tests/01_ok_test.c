@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   basic_tests.h                                      :+:      :+:    :+:   */
+/*   01_ok_test.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/06 12:10:04 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/06 19:03:18 by smargine         ###   ########.fr       */
+/*   Created: 2025/09/06 18:52:32 by smargine          #+#    #+#             */
+/*   Updated: 2025/09/06 18:56:00 by smargine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASIC_TESTS_H
-# define BASIC_TESTS_H
+#include "basic_tests.h"
+#include "libunit.h"
 
-# include "libunit.h"
-
-int	basic_tests_launcher(void);
-int	ok_test(void);
-int	ko_test(void);
-int segv_test(void);
-int buserr_test(void);
-
-#endif
+int ok_test(void)
+{
+	return (0);
+}
