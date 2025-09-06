@@ -7,12 +7,11 @@ RESET := \033[0m
 
 NAME = libunit.a
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -Iincludes
+CFLAGS = -Wall -Werror -Wextra -Iincludes -Ilibft
 
-GET_LIBFT_REPO = https://github.com/tpandya42/Libft.git
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
-LIBFT_INCLUDES = -I$(LIBFT_DIR)/includes
+LIBFT_INCLUDES = -I$(LIBFT_DIR)
 
 SRC_DIR = src_main
 OBJ_DIR = obj
@@ -24,34 +23,28 @@ RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@# Getting libft from Github if it's not present
-	@if [ ! -d "$(LIBFT_DIR)" ]; then \
-		echo "Cloning libft from $(GET_LIBFT_REPO)..."; \
-		git clone $(GET_LIBFT_REPO) $(LIBFT_DIR); \
+$(LIBFT):
+	@if [ ! -d $(LIBFT_DIR) ]; then \
+		echo "$(RED)Missing local libft directory '$(LIBFT_DIR)'. Add it before building.$(RESET)"; \
+		exit 1; \
 	fi
-	@# Making it...
 	@if [ -f $(LIBFT_DIR)/Makefile ]; then \
-		make -C $(LIBFT_DIR); \
-	fi
-	@if [ -f $(LIBFT) ]; then \
-		ar rcs $@ $(OBJS) $(LIBFT); \
+		$(MAKE) -C $(LIBFT_DIR); \
 	else \
-		ar rcs $@ $(OBJS); \
-	fi	
-	@echo "$(CYAN)LIBUNIT BUILT!!!!$(RESET)";
+		echo "$(RED)Missing libft Makefile inside '$(LIBFT_DIR)'.$(RESET)"; \
+		exit 1; \
+	fi
+
+$(NAME): $(OBJS) $(LIBFT)
+	@ar rcs $@ $(OBJS)
+	@echo "$(CYAN)Built $(NAME) (libft kept as separate archive)$(RESET)";
 
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(LIBFT_INCLUDES) -c $< -o $@
 
-.PHONY: get_libft
 get_libft:
-	@if [ -d "$(LIBFT_DIR)" ]; then \
-		echo "$(LIBFT_DIR) already exists"; \
-	else \
-		git clone $(GET_LIBFT_REPO) $(LIBFT_DIR); \
-	fi
+	@echo "Local libft expected at $(LIBFT_DIR). No clone performed."
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)

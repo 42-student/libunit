@@ -13,7 +13,7 @@
 #include "libunit.h"
 
 static int		print_status(int status);
-static void	print_passed(int passed, int i);
+static void	print_passed(int passed, int total);
 
 int	launch_tests(t_unit_test *testlist)
 {
@@ -78,15 +78,20 @@ static int	print_status(int status)
 	return (1);
 }
 
-static void	print_passed(int passed, int i)
+static void	print_passed(int passed, int total)
 {
-	char *str;
+	char *num1;
+	char *num2;
 
-	write (1, "passed ", 7);
-	str = ft_itoa(passed);
-	write (1, str, ft_strlen(str));
-	write (1, "/", 1);
-	str = ft_itoa(i);
-	write (1, str, ft_strlen(i));
-	write (1, "\n", 1);
+	write(1, "passed ", 7);
+	num1 = ft_itoa(passed);
+	if (num1)
+		write(1, num1, ft_strlen(num1));
+	write(1, "/", 1);
+	num2 = ft_itoa(total);
+	if (num2)
+		write(1, num2, ft_strlen(num2));
+	write(1, "\n", 1);
+	free(num1);
+	free(num2);
 }
