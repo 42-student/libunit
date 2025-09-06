@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libunit.h>
+#include "libunit.h"
 
 static int		print_status(int status);
 
