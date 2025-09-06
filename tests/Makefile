@@ -25,15 +25,11 @@ OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS)) $(OBJ_DIR)/main.o
 
 FRAMEWORK_DIR = ../framework
 FRAMEWORK = $(FRAMEWORK_DIR)/libunit.a
+LIBFT_DIR = $(FRAMEWORK_DIR)/libft
+LIBFT = libft.a
 
 # for including libunit.h
-CFLAGS += -I$(FRAMEWORK_DIR)/includes -I$(FRAMEWORK_DIR)
-
-#Executing the executable in test:
-EXEC = ./unit_test
-
-
-
+CFLAGS += -I$(FRAMEWORK_DIR)/includes -I$(FRAMEWORK_DIR)/ -I$(LIBFT_DIR)
 
 
 RM = rm -f
@@ -58,14 +54,19 @@ all: $(FRAMEWORK) $(NAME)
 # 	@echo "$(CYAN)LIBUNIT BUILT!!!!$(RESET)";
 #
 
-$(NAME): $(OBJS) $(FRAMEWORK)
-	@echo "$(CYAN)Linking $(NAME) with $(FRAMEWORK)$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJS) $(FRAMEWORK) -o $@
+$(NAME): $(OBJS) $(FRAMEWORK) $(LIBFT_DIR)/$(LIBFT)
+	@echo "$(CYAN)Linking $(NAME) with $(FRAMEWORK) and libft.a$(RESET)"
+	@$(CC) $(CFLAGS) $(OBJS) $(FRAMEWORK) $(LIBFT_DIR)/$(LIBFT) -o $@
 	@echo "$(GREEN)Built $(NAME) ✔$(RESET)"
 
-$(FRAMEWORK):
+$(LIBFT_DIR)/$(LIBFT):
+	@echo "$(CYAN)Building local libft.a$(RESET)"
+	@if [ ! -d $(LIBFT_DIR) ]; then echo "$(RED)Missing local libft directory at $(LIBFT_DIR)$(RESET)"; exit 1; fi
+	@if [ -f $(LIBFT_DIR)/Makefile ]; then $(MAKE) -C $(LIBFT_DIR); else echo "$(RED)Missing libft Makefile$(RESET)"; exit 1; fi
+
+$(FRAMEWORK): $(LIBFT_DIR)/$(LIBFT)
 	@echo "$(CYAN)Building framework (libunit.a) in $(FRAMEWORK_DIR)$(RESET)"
-	@$(MAKE) -C $(FRAMEWORK_DIR) || { echo "$(RED)Failed to build framework$(RESET)"; exit 1; }
+	@$(MAKE) -C $(FRAMEWORK_DIR)
 		
 		
 
@@ -78,22 +79,15 @@ $(OBJ_DIR)/main.o: $(MAIN) | $(OBJ_DIR)
 .PHONY: get_libft
 
 get_libft:
-	@if [ -d "$(LIBFT_DIR)" ]; then \
-		echo "$(LIBFT_DIR) already exists"; \
-	else \
-		git clone $(GET_LIBFT_REPO) $(LIBFT_DIR); \
-	fi
+	@echo "Local libft expected at $(LIBFT_DIR). No clone performed."
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
-test: all
-	$(EXEC)
 
 clean:
 	$(RM) $(OBJS)
 	@if [ -d $(FRAMEWORK_DIR) ]; then $(MAKE) -C $(FRAMEWORK_DIR) clean; fi
-	$(RM) -r $(LIBFT_DIR)
 
 fclean: clean
 	$(RM) $(NAME)
