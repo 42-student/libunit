@@ -6,7 +6,7 @@
 /*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:30:07 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/06 15:42:50 by mmillhof         ###   ########.fr       */
+/*   Updated: 2025/09/06 16:41:07 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <sys/wait.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
+# include <string.h>
 
 typedef struct s_unit_test
 {
