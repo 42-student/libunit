@@ -58,7 +58,6 @@ $(OBJ_DIR):
 
 clean:
 	$(RM) $(OBJS)
-	$(RM) -r $(LIBFT_DIR)
 
 fclean: clean
 	$(RM) $(NAME)
