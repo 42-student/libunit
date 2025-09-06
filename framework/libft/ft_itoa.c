@@ -3,83 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpandya <tpandya@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 15:34:30 by tpandya           #+#    #+#             */
-/*   Updated: 2025/05/07 15:34:32 by tpandya          ###   ########.fr       */
+/*   Created: 2025/05/18 18:04:32 by mmillhof          #+#    #+#             */
+/*   Updated: 2025/05/23 12:18:11 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	nb_len(int n)
-{
-	int	i;
-
-	i = 1;
-	if (n < 0)
-	{
-		if (n == INT_MIN)
-			return (11);
-		n = -n;
-		i++;
-	}
-	while (n > 9)
-	{
-		n /= 10;
-		i++;
-	}
-	return (i);
-}
+static void	ft_count(long int n, size_t *pos);
+static void	ft_fill(long int n, char *asc, size_t *pos);
 
 char	*ft_itoa(int n)
 {
-	long	nb;
-	int		len;
-	char	*str;
+	char		*asc;
+	size_t		pos;
+	size_t		len;
+	long int	nbr;
 
-	nb = n;
-	len = nb_len(n);
-	str = (char *)malloc((len + 1) * sizeof(char));
-	if (!str)
+	nbr = (long int)n;
+	pos = 0;
+	if (nbr < 0)
+	{
+		nbr = -nbr;
+		pos++;
+	}
+	len = 0;
+	ft_count(nbr, &len);
+	asc = malloc((len + pos + 1) * sizeof(char));
+	if (!asc)
 		return (NULL);
-	str[len] = '\0';
-	if (nb < 0)
-	{
-		str[0] = '-';
-		nb = -nb;
-	}
-	while (len-- && nb >= 0)
-	{
-		if (str[len] == '-')
-			break ;
-		str[len] = (nb % 10) + '0';
-		nb /= 10;
-	}
-	return (str);
+	asc[0] = '-';
+	ft_fill(nbr, asc, &pos);
+	asc[pos] = '\0';
+	return (asc);
 }
-/*
-#include "libft.h"
-#include <stdio.h>
 
-int	main(void)
+static void	ft_count(long int n, size_t *len)
 {
-	int test_cases[] = {0, 123, -123, INT_MAX, INT_MIN, 42, -42};
-	int num_tests = sizeof(test_cases) / sizeof(test_cases[0]);
+	if (n > 9)
+		ft_count(n / 10, len);
+	*len = *len + 1;
+	return ;
+}
 
-	for (int i = 0; i < num_tests; i++)
-	{
-		char *result = ft_itoa(test_cases[i]);
-		if (result)
-		{
-			printf("ft_itoa(%d) = \"%s\"\n", test_cases[i], result);
-			free(result); // Don't forget to free the allocated memory!
-		}
-		else
-		{
-			printf("Memory allocation failed for input %d\n", test_cases[i]);
-		}
-	}
-
-	return (0);
-}*/
+static void	ft_fill(long int n, char *asc, size_t *pos)
+{
+	if (n > 9)
+		ft_fill(n / 10, asc, pos);
+	asc[*pos] = (n % 10) + '0';
+	*pos = *pos + 1;
+	return ;
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpandya <tpandya@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 15:35:45 by tpandya           #+#    #+#             */
-/*   Updated: 2025/05/07 15:35:47 by tpandya          ###   ########.fr       */
+/*   Created: 2025/05/21 18:26:11 by mmillhof          #+#    #+#             */
+/*   Updated: 2025/05/23 13:14:29 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,22 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*newlist;
 	t_list	*newnode;
-	t_list	*current;
+	void	*newcontent;
 
-	newlist = NULL;
 	if (!lst || !f)
 		return (NULL);
+	newlist = NULL;
 	while (lst)
 	{
-		newnode = ft_lstnew(f(lst->content));
+		newcontent = f(lst->content);
+		newnode = ft_lstnew(newcontent);
 		if (!newnode)
 		{
+			del(newcontent);
 			ft_lstclear(&newlist, del);
 			return (NULL);
 		}
-		if (!newlist)
-			newlist = newnode;
-		else
-			current->next = newnode;
-		current = newnode;
+		ft_lstadd_back(&newlist, newnode);
 		lst = lst->next;
 	}
 	return (newlist);

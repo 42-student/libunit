@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpandya <tpandya@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 16:12:51 by tpandya           #+#    #+#             */
-/*   Updated: 2025/05/07 16:13:25 by tpandya          ###   ########.fr       */
+/*   Created: 2025/05/18 13:11:39 by mmillhof          #+#    #+#             */
+/*   Updated: 2025/05/18 13:24:54 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
+	size_t	s1_len;
+	size_t	s2_len;
 	char	*str;
 
-	if (!s1 && !s2)
-		return (NULL);
-	if (!s1)
-		return (ft_strdup(s2));
-	if (!s2)
-		return (ft_strdup(s1));
-	str = ft_strnew(ft_strlen(s1) + ft_strlen(s2));
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	str = malloc ((s1_len + s2_len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
-	ft_strcpy(str, s1);
-	ft_strcat(str, s2);
+	ft_strlcpy (str, s1, s1_len + 1);
+	ft_strlcat (str, s2, s1_len + s2_len + 1);
 	return (str);
 }

@@ -1,95 +1,76 @@
-NAME = libft.a
-
-CC = cc
-CFLAGS = -Wall -Werror -Wextra
-
-SRC_NAMES = ft_atoi.c \
-			ft_bzero.c \
-			ft_calloc.c \
-			ft_isalnum.c \
-			ft_isalpha.c \
-			ft_isascii.c \
+CFILES := ft_isalpha.c \
 			ft_isdigit.c \
+			ft_isalnum.c \
+			ft_isascii.c \
 			ft_isprint.c \
-			ft_iswhitespace.c \
-			ft_itoa.c \
-			ft_memchr.c \
-			ft_memcmp.c \
-			ft_memcpy.c \
-			ft_memmove.c \
-			ft_memset.c \
-			ft_putchar.c \
-			ft_putchar_fd.c \
-			ft_putendl.c \
-			ft_putendl_fd.c \
-			ft_putnbr.c \
-			ft_putnbr_fd.c \
-			ft_putstr.c \
-			ft_putstr_fd.c \
-			ft_split.c \
-			ft_strcat.c \
-			ft_strchr.c \
-			ft_strcmp.c \
-			ft_strcpy.c \
-			ft_strdel.c \
-			ft_strdup.c \
-			ft_striteri.c \
-			ft_strjoin.c \
-			ft_strlcat.c \
-			ft_strlcpy.c \
 			ft_strlen.c \
-			ft_strmap.c \
-			ft_strmapi.c \
-			ft_strncmp.c \
-			ft_strncpy.c \
-			ft_strnew.c \
-			ft_strnstr.c \
-			ft_strrchr.c \
-			ft_strstr.c \
-			ft_strtrim.c \
-			ft_substr.c \
+			ft_toupper.c \
 			ft_tolower.c \
-			ft_toupper.c
-BONUS_NAMES = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
-BONUS_SRCS = $(BONUS_NAMES)
-BONUS_OBJS_NAMES = $(BONUS_NAMES:.c=.o)
-BONUS_OBJS = $(addprefix $(OBJ_DIR), $(BONUS_OBJS_NAMES))
+			ft_strchr.c \
+			ft_strrchr.c \
+			ft_strncmp.c \
+			ft_memset.c \
+			ft_bzero.c \
+			ft_memchr.c \
+			ft_memcpy.c \
+			ft_memcmp.c \
+			ft_memmove.c \
+			ft_strnstr.c \
+			ft_strlcpy.c \
+			ft_strlcat.c \
+			ft_atoi.c \
+			ft_calloc.c \
+			ft_strdup.c \
+			ft_substr.c \
+			ft_strjoin.c \
+			ft_strtrim.c \
+			ft_split.c \
+			ft_itoa.c \
+			ft_strmapi.c \
+			ft_striteri.c \
+			ft_putchar_fd.c \
+			ft_putstr_fd.c \
+			ft_putendl_fd.c \
+			ft_putnbr_fd.c \
+			ft_printf.c \
+			ft_printf_ft.c \
+			get_next_line.c \
+			get_next_line_utils.c
 
+BONUSCFILES := ft_lstnew.c \
+			ft_lstadd_front.c \
+			ft_lstsize.c \
+			ft_lstlast.c \
+			ft_lstadd_back.c \
+			ft_lstdelone.c \
+			ft_lstclear.c \
+			ft_lstiter.c \
+			ft_lstmap.c
 
+OFILES := $(CFILES:.c=.o)
 
-SRCS =  $(SRC_NAMES)
-OBJ_DIR = objs/
-OBJ_NAMES = $(SRC_NAMES:.c=.o)
-OBJS = $(addprefix $(OBJ_DIR), $(OBJ_NAMES))
+BONUSOFILES := $(BONUSCFILES:.c=.o)
 
-HDR_NAMES = libft.h
-HDRS = $(HDR_NAMES)
+CC := cc
 
-all: $(NAME) $(HDRS)
+CFLAGS := -Wall -Wextra -Werror
 
-$(NAME): $(OBJ_DIR) $(OBJS) $(HDRS)
-	@ar rc $@ $(OBJS)
-	@ranlib $@
+NAME := libft.a
 
-bonus: $(OBJ_DIR) $(OBJS) $(BONUS_OBJS) $(HDRS)
-	@ar rc $(NAME) $(OBJS) $(BONUS_OBJS)
-	@ranlib $(NAME)
+all: $(NAME)
 
+$(NAME): $(OFILES)
+	ar rcs $(NAME) $(OFILES)
 
-$(OBJ_DIR):
-	@mkdir $@
+bonus: $(NAME) $(BONUSOFILES)
+	ar rcs $(NAME) $(BONUSOFILES)
 
-OBJ_DIR = objs/
-
-$(OBJ_DIR)%.o: %.c $(HDRS)
-	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
 clean:
-	@rm -Rf $(OBJ_DIR)
+	rm -f $(OFILES) $(BONUSOFILES)
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
-re: fclean all
+re:	fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY:	clean fclean re all
