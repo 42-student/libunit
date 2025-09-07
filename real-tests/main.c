@@ -10,14 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "real_tests.h"
 #include "libunit.h"
+#include "real_tests.h"
+
+void	print_banner(void)
+{
+	const char	*banner = " _     _  ____  _     _      _ _____ \n"
+		"/ \\   / \\/  _ \\/ \\ /\\/ \\  /|/ Y__ __\\\n"
+		"| |   | || | //| | ||| |\\ ||| | / \\  \n"
+		"| |_/\\| || |_\\| \\_/|| | \\||| | | |  \n"
+		"\\____/\\_/\\____/\\____/\\_/  \\|\\_/ \\_/  \n";
+
+	ft_printf("%s", banner);
+}
 
 int	main(void)
 {
 	int	nbr_of_tests;
 	int	passed;
 
+	print_banner();
 	nbr_of_tests = 4;
 	passed = 0;
 	passed += ft_strlen_tests_launcher();
@@ -25,6 +37,6 @@ int	main(void)
 	passed += ft_isdigit_tests_launcher();
 	passed += ft_strjoin_tests_launcher();
 	if (passed == nbr_of_tests)
-		write(1, GREEN"All tests passed!\n\n"RESET, 28);
+		write(1, GREEN "All tests passed!\n\n" RESET, 28);
 	return (0);
 }

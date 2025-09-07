@@ -12,11 +12,22 @@
 
 #include "basic_tests.h"
 
+void	print_banner(void)
+{
+	const char	*banner = " _     _  ____  _     _      _ _____ \n"
+		"/ \\   / \\/  _ \\/ \\ /\\/ \\  /|/ Y__ __\\\n"
+		"| |   | || | //| | ||| |\\ ||| | / \\  \n"
+		"| |_/\\| || |_\\| \\_/|| | \\||| | | |  \n"
+		"\\____/\\_/\\____/\\____/\\_/  \\|\\_/ \\_/  \n";
+
+	ft_printf("%s", banner);
+}
+
 int	main(void)
 {
 	int	nbr_of_tests;
 	int	passed;
-
+	print_banner();
 	nbr_of_tests = 1;
 	passed = basic_tests_launcher();
 	if (passed == nbr_of_tests)

@@ -6,13 +6,6 @@ RED := \033[0;31m
 CYAN := \033[36m
 RESET := \033[0m
 
-define LOGO
-__   ____ ___  _    __   ____ ____ 
-| |  |___\| .\ || \ | \|\|___\|_ _\
-| |__| /  | .<_||_|\|  \|| /    || 
-|___/|/   |___/|___/|/\_/|/     |/ 
-
-endef
 
 NAME = unit_test
 CC = cc
@@ -94,9 +87,6 @@ $(OBJ_DIR):
 
 test: all
 	$(EXEC)
-
-logo: 
-	@printf "%b\n" "$(LOGO)"
 
 clean:
 	@$(RM) $(OBJS)
