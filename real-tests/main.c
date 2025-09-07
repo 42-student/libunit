@@ -6,7 +6,7 @@
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 23:05:03 by smargine          #+#    #+#             */
-/*   Updated: 2025/09/07 14:24:08 by mmillhof         ###   ########.fr       */
+/*   Updated: 2025/09/07 14:26:56 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(void)
 {
 	int	nbr_of_tests;
 	int	passed;
-	
+
 	nbr_of_tests = 4;
 	passed = 0;
 	passed += ft_strlen_tests_launcher();
