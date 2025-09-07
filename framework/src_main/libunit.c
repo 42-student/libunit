@@ -6,7 +6,7 @@
 /*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:18:03 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/07 13:14:13 by mmillhof         ###   ########.fr       */
+/*   Updated: 2025/09/07 14:24:39 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	launch_tests(t_unit_test *testlist)
 		i++;
 	}
 	print_result(passed, i);
-	return (0);
+	return (passed == i);
 }
 
 void	load_test(t_unit_test *testlist, char *name, void *test)
@@ -61,15 +61,15 @@ static int	print_status(int status)
 	if (WIFSIGNALED(status))
 	{
 		if (WTERMSIG(status) == SIGSEGV)
-			write(1, RED" [SEGV]\n"RESET, 17);
+			write(1, RED" [SEGV] >>> Segfault\n"RESET, 30);
 		if (WTERMSIG(status) == SIGBUS)
-			write(1, RED" [BUS]\n"RESET, 16);
+			write(1, RED" [BUS] >>> Bus error\n"RESET, 30);
 		if (WTERMSIG(status) == SIGABRT)
-			write(1, RED" [ABRT]\n"RESET, 17);
+			write(1, RED" [ABRT] >>> Abort signal\n"RESET, 34);
 		if (WTERMSIG(status) == SIGFPE)
-			write(1, RED" [FPE] (Arithmetic error!)\n"RESET, 36);
+			write(1, RED" [FPE] >>> Arithmetic error\n"RESET, 37);
 		if (WTERMSIG(status) == SIGPIPE)
-			write(1, RED" [PIPE]\n"RESET, 17);
+			write(1, RED" [PIPE] >>> Pipe error\n"RESET, 32);
 	}
 	else
 	{
@@ -86,20 +86,13 @@ static int	print_status(int status)
 
 static void	print_result(int passed, int total)
 {
-	char	*num;
-
 	write(1, "passed ", 7);
-	num = ft_itoa(passed);
-	if (num)
-		write(1, num, ft_strlen(num));
+	ft_putnbr_fd(passed, 1);
 	write(1, "/", 1);
-	free(num);
-	num = ft_itoa(total);
-	if (num)
-		write(1, num, ft_strlen(num));
+	ft_putnbr_fd(total, 1);
 	if (passed == total)
-		write(1, GREEN" [OK]\nAll tests passed!\n"RESET, 33);
+		write(1, GREEN" [OK]\n"RESET, 15);
 	else
 		write(1, RED" [KO]\n"RESET, 15);
-	free(num);
+	write (1, "\n", 1);
 }
