@@ -20,7 +20,18 @@ SRC_DIR = basic_tests
 OBJ_DIR = obj
 MAIN = main.c
 
-SRCS = $(wildcard $(SRC_DIR)/*.c)
+SRCS = \
+	$(SRC_DIR)/00_basic_tests_launcher.c \
+	$(SRC_DIR)/01_ok_test.c \
+	$(SRC_DIR)/02_ko_test.c \
+	$(SRC_DIR)/03_segfault_test.c \
+	$(SRC_DIR)/04_buserr_test.c \
+	$(SRC_DIR)/05_sigabrt_test.c \
+	$(SRC_DIR)/06_sigfpe_test.c \
+	$(SRC_DIR)/07_sigpipe_test.c \
+	$(SRC_DIR)/08_illegal_test.c \
+	$(SRC_DIR)/09_timeout_test.c
+
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS)) $(OBJ_DIR)/main.o
 EXEC = ./unit_test
 

@@ -12,7 +12,6 @@
 
 #include "basic_tests.h"
 
-
 void	print_banner(void)
 {
 	const char	*banner;

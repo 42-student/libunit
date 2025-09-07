@@ -19,7 +19,10 @@ LIBFT_INCLUDES = -I$(LIBFT_DIR)
 SRC_DIR = src_main
 OBJ_DIR = obj
 
-SRCS = $(wildcard $(SRC_DIR)/*.c)
+SRCS = \
+       $(SRC_DIR)/libunit.c \
+       $(SRC_DIR)/libunit_helpers.c
+
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
 RM = rm -f
