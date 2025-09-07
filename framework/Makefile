@@ -54,6 +54,7 @@ $(OBJ_DIR):
 
 clean:
 	@$(RM) $(OBJS)
+	@make -C$(LIBFT_DIR) clean
 	@echo "$(CYAN)>>>>>Cleaning<<<<<$(RESET)"
 
 fclean: clean

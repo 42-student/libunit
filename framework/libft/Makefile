@@ -1,3 +1,6 @@
+MAKEFLAGS += --no-print-directory -s
+
+
 CFILES := ft_isalpha.c \
 			ft_isdigit.c \
 			ft_isalnum.c \
