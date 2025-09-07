@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   basic_tests.h                                      :+:      :+:    :+:   */
+/*   07_sigpipe_test.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/06 12:10:04 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/07 13:17:43 by mmillhof         ###   ########.fr       */
+/*   Created: 2025/09/06 18:52:32 by smargine          #+#    #+#             */
+/*   Updated: 2025/09/07 13:24:26 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASIC_TESTS_H
-# define BASIC_TESTS_H
+#include "basic_tests.h"
+#include "libunit.h"
 
-# include "libunit.h"
+int	sigpipe_test(void)
+{
+	int	pipefd[2];
 
-int	basic_tests_launcher(void);
-int	ok_test(void);
-int	ko_test(void);
-int	segv_test(void);
-int	buserr_test(void);
-int	sigabrt_test(void);
-int	sigfpe_test(void);
-int	sigpipe_test(void);
-
-#endif
+	pipe(pipefd);
+	close(pipefd[0]);
+	write(pipefd[1], "test", 4);
+	close(pipefd[1]);
+	return (0);
+}
