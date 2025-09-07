@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libunit.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:30:07 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/06 19:59:09 by mmillhof         ###   ########.fr       */
+/*   Updated: 2025/09/07 15:23:15 by smargine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdlib.h>
 # include "libft.h"
 # include "color.h"
+
+# define TIMEOUT_SEC 5
 
 typedef struct s_unit_test
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libunit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:18:03 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/07 14:24:39 by mmillhof         ###   ########.fr       */
+/*   Updated: 2025/09/07 15:26:03 by smargine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	print_status(int status);
 static void	print_result(int passed, int total);
+static void	exit_timeout(int sig);
 
 int	launch_tests(t_unit_test *testlist)
 {
@@ -30,6 +31,8 @@ int	launch_tests(t_unit_test *testlist)
 		pid = fork();
 		if (pid == 0)
 		{
+			signal(SIGALRM, &exit_timeout);
+			alarm(TIMEOUT_SEC);
 			ret = testlist[i].test();
 			exit (ret);
 		}
@@ -70,6 +73,8 @@ static int	print_status(int status)
 			write(1, RED" [FPE] >>> Arithmetic error\n"RESET, 37);
 		if (WTERMSIG(status) == SIGPIPE)
 			write(1, RED" [PIPE] >>> Pipe error\n"RESET, 32);
+		if (WTERMSIG(status) == SIGILL)
+			write(1, RED" [ILL] >>>  Illegal operation\n"RESET, 39);
 	}
 	else
 	{
@@ -78,6 +83,8 @@ static int	print_status(int status)
 			write(1, GREEN" [OK]\n"RESET, 15);
 			return (0);
 		}
+		if (WEXITSTATUS(status) == 124)
+			write(1, RED" [TIMEOUT]\n"RESET, 20);
 		else
 			write(1, RED" [KO]\n"RESET, 15);
 	}
@@ -95,4 +102,10 @@ static void	print_result(int passed, int total)
 	else
 		write(1, RED" [KO]\n"RESET, 15);
 	write (1, "\n", 1);
+}
+
+static void	exit_timeout(int sig)
+{
+	(void)sig;
+	exit(124);
 }
