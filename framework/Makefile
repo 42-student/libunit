@@ -50,11 +50,11 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
 clean:
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
-	-rm -rf $(OBJ_DIR)
+	@$(RM) $(NAME)
+	@-rm -rf $(OBJ_DIR)
 
 re: fclean all
 
