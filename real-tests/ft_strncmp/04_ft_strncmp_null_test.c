@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   04_ft_strcmp_null_test.c                           :+:      :+:    :+:   */
+/*   04_ft_strncmp_null_test.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 00:08:07 by smargine          #+#    #+#             */
-/*   Updated: 2025/09/07 00:08:53 by smargine         ###   ########.fr       */
+/*   Updated: 2025/09/07 01:51:14 by smargine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
 
-int	ft_strcmp_null_test(void)
+int	ft_strncmp_null_test(void)
 {
-	if (ft_strcmp("42Berlin", NULL) == -42)
+	if (ft_strncmp("42Berlin", NULL, 42) == -42)
 		return (0);
 	return (-1);
 }

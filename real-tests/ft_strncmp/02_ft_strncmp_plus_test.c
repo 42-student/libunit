@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   03_ft_strcmp_minus_test.c                          :+:      :+:    :+:   */
+/*   02_ft_strncmp_plus_test.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/07 00:02:45 by smargine          #+#    #+#             */
-/*   Updated: 2025/09/07 00:03:25 by smargine         ###   ########.fr       */
+/*   Created: 2025/09/06 23:59:49 by smargine          #+#    #+#             */
+/*   Updated: 2025/09/07 01:52:02 by smargine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
 
-int	ft_strcmp_minus_test(void)
+int	ft_strncmp_plus_test(void)
 {
-	if (ft_strcmp("aaaa", "aaab") == -1)
+	if (ft_strncmp("aaab", "aaaa", 42) == 1)
 		return (0);
 	return (-1);
 }

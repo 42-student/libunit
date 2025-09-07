@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   01_ft_strcmp_basic_test.c                          :+:      :+:    :+:   */
+/*   03_ftstrjoin_null_test.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/06 23:48:42 by smargine          #+#    #+#             */
-/*   Updated: 2025/09/06 23:49:25 by smargine         ###   ########.fr       */
+/*   Created: 2025/09/07 00:53:41 by smargine          #+#    #+#             */
+/*   Updated: 2025/09/07 01:54:16 by smargine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
 
-int ft_strcmp_basic_test(void)
+int	ft_strjoin_null_test(void)
 {
-	if (ft_strcmp("abc", "abc") == 0)
+	char	*result;
+
+	result = ft_strjoin("42", NULL);
+	if (ft_strncmp(result, "42", 42) == 0)
+	{
+		free(result);
 		return (0);
-	return (-1);
+	}
+	else
+	{
+		free(result);
+		return (-1);
+	}
 }

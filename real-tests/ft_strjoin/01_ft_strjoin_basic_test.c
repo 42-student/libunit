@@ -6,7 +6,7 @@
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 00:37:40 by smargine          #+#    #+#             */
-/*   Updated: 2025/09/07 00:52:01 by smargine         ###   ########.fr       */
+/*   Updated: 2025/09/07 01:53:59 by smargine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_strjoin_basic_test(void)
 	char	*result;
 
 	result = ft_strjoin("42", "Berlin");
-	if (ft_strcmp(result, "42Berlin") == 0)
+	if (ft_strncmp(result, "42Berlin", 42) == 0)
 	{
 		free(result);
 		return (0);
