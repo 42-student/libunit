@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/06 11:32:13 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/07 14:08:30 by mmillhof         ###   ########.fr       */
+/*   Created: 2025/09/07 14:38:10 by smargine          #+#    #+#             */
+/*   Updated: 2025/09/07 14:38:14 by smargine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	basic_tests_launcher(void)
 {
-	t_unit_test	testlist[8];
+	t_unit_test	testlist[10];
 	int			ret;
 
 	testlist[0].test = NULL;
@@ -26,6 +26,8 @@ int	basic_tests_launcher(void)
 	load_test(testlist, "Basic Test: SIGABRT test", &sigabrt_test);
 	load_test(testlist, "Basic Test: SIGFPE test", &sigfpe_test);
 	load_test(testlist, "Basic Test: SIGPIPE test", &sigpipe_test);
+	load_test(testlist, "Basic Test: SIGILL test", &illegal_test);
+	load_test(testlist, "Basic Test: timeout test", &timeout_test);
 	ret = launch_tests(testlist);
 	return (ret);
 }
