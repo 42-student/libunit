@@ -6,7 +6,7 @@
 /*   By: mmillhof <mmillhof@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:18:03 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/07 01:15:07 by mmillhof         ###   ########.fr       */
+/*   Updated: 2025/09/07 12:45:52 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	launch_tests(t_unit_test *testlist)
 		if (pid == 0)
 		{
 			ret = testlist[i].test();
-			free(testlist);
 			exit (ret);
 		}
 		write(1, testlist[i].name, ft_strlen(testlist[i].name));
@@ -46,7 +45,7 @@ int	launch_tests(t_unit_test *testlist)
 
 void	load_test(t_unit_test *testlist, char *name, void *test)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (testlist[i].test)
@@ -97,7 +96,7 @@ static void	print_result(int passed, int total)
 	if (num)
 		write(1, num, ft_strlen(num));
 	if (passed == total)
-		write(1, GREEN"\nAll tests passed!\n"RESET, 28);
+		write(1, GREEN" [OK]\nAll tests passed!\n"RESET, 33);
 	else
 		write(1, RED" [KO]\n"RESET, 15);
 	free(num);

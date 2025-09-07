@@ -6,7 +6,7 @@
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 00:35:05 by smargine          #+#    #+#             */
-/*   Updated: 2025/09/07 02:12:44 by mmillhof         ###   ########.fr       */
+/*   Updated: 2025/09/07 12:47:49 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,14 @@ extern int	ft_strjoin_special_test(void);
 
 int	ft_strjoin_tests_launcher(void)
 {
-	t_unit_test	*testlist;
+	t_unit_test	testlist[5];
 	int			ret;
 
-	testlist = malloc(5 * sizeof(t_unit_test));
 	testlist[0].test = NULL;
 	load_test(testlist, "ft_strjoin: basic test", &ft_strjoin_basic_test);
 	load_test(testlist, "ft_strjoin: empty test", &ft_strjoin_empty_test);
 	load_test(testlist, "ft_strjoin: null test", &ft_strjoin_null_test);
 	load_test(testlist, "ft_strjoin: special test", &ft_strjoin_special_test);
 	ret = launch_tests(testlist);
-	free(testlist);
 	return (ret);
 }
