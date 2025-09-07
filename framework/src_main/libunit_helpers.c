@@ -6,7 +6,7 @@
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:18:03 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/07 15:56:16 by mmillhof         ###   ########.fr       */
+/*   Updated: 2025/09/07 16:53:55 by smargine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	print_status(int status)
 			return (0);
 		}
 		if (WEXITSTATUS(status) == 124)
-			write(1, RED" [TIMEOUT]\n"RESET, 20);
+			write(1, YELLOW" [TIMEOUT]\n"RESET, 20);
 		else
 			write(1, RED" [KO]\n"RESET, 15);
 	}
@@ -47,15 +47,15 @@ void	print_result(int passed, int total)
 void	print_signals(int status)
 {
 	if (WTERMSIG(status) == SIGSEGV)
-		write(1, RED" [SEGV] >>> Segfault\n"RESET, 30);
+		write(1, MAGENTA" [SEGV] >>> Segfault\n"RESET, 30);
 	if (WTERMSIG(status) == SIGBUS)
-		write(1, RED" [BUS] >>> Bus error\n"RESET, 30);
+		write(1, MAGENTA" [BUS] >>> Bus error\n"RESET, 30);
 	if (WTERMSIG(status) == SIGABRT)
-		write(1, RED" [ABRT] >>> Abort signal\n"RESET, 34);
+		write(1, MAGENTA" [ABRT] >>> Abort signal\n"RESET, 34);
 	if (WTERMSIG(status) == SIGFPE)
-		write(1, RED" [FPE] >>> Arithmetic error\n"RESET, 37);
+		write(1, MAGENTA" [FPE] >>> Arithmetic error\n"RESET, 37);
 	if (WTERMSIG(status) == SIGPIPE)
-		write(1, RED" [PIPE] >>> Pipe error\n"RESET, 32);
+		write(1, MAGENTA" [PIPE] >>> Pipe error\n"RESET, 32);
 	if (WTERMSIG(status) == SIGILL)
-		write(1, RED" [ILL] >>>  Illegal operation\n"RESET, 39);
+		write(1, MAGENTA" [ILL] >>>  Illegal operation\n"RESET, 39);
 }
