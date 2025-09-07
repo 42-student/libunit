@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-MAKEFLAGS += --no-print-directory
+MAKEFLAGS += --no-print-directory -s
 
 # Defining Colors
 GREEN := \033[0;32m
@@ -134,14 +134,12 @@ clean:
 	@$(RM) $(OBJS)
 	@make -C$(LIBFT_DIR) clean
 	@if [ -d $(FRAMEWORK_DIR) ]; then $(MAKE) -C $(FRAMEWORK_DIR) clean; fi
-	@echo "$(CYAN)>>>>>Cleaning<<<<<$(RESET)"
 
 fclean: clean
 	@$(RM) $(NAME)
 	@if [ -d $(FRAMEWORK_DIR) ]; then $(MAKE) -C $(FRAMEWORK_DIR) fclean || true; fi
 	@rm -rf $(OBJ_DIR)
-	@echo "$(GREEN)>>>>>Everything Cleaned Successfully<<<<<$(RESET)"
-
+	
 
 re: fclean all
 
