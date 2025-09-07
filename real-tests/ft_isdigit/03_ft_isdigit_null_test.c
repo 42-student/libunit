@@ -6,7 +6,7 @@
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 00:26:28 by smargine          #+#    #+#             */
-/*   Updated: 2025/09/07 00:27:11 by smargine         ###   ########.fr       */
+/*   Updated: 2025/09/07 02:15:08 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_isdigit_null_test(void)
 {
-	if (ft_isdigit(0))
+	if (!ft_isdigit(0))
 		return (0);
 	return (-1);
 }

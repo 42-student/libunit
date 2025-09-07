@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   02_ft_strlen_empty_test.c                          :+:      :+:    :+:   */
+/*   03_ft_strlen_empty_test.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 23:29:26 by smargine          #+#    #+#             */
-/*   Updated: 2025/09/06 23:29:56 by smargine         ###   ########.fr       */
+/*   Updated: 2025/09/07 02:09:59 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
 
-int ft_strlen_empty_test(void)
+int	ft_strlen_empty_test(void)
 {
 	if (ft_strlen("") == 0)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 00:28:42 by smargine          #+#    #+#             */
-/*   Updated: 2025/09/07 00:29:27 by smargine         ###   ########.fr       */
+/*   Updated: 2025/09/07 02:15:17 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_isdigit_space_test(void)
 {
-	if (ft_isdigit(' '))
+	if (!ft_isdigit(' '))
 		return (0);
 	return (-1);
 }

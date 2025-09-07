@@ -6,13 +6,13 @@
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 23:33:55 by smargine          #+#    #+#             */
-/*   Updated: 2025/09/06 23:34:19 by smargine         ###   ########.fr       */
+/*   Updated: 2025/09/07 02:09:50 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
 
-int ft_strlen_null_test(void)
+int	ft_strlen_null_test(void)
 {
 	if (ft_strlen(NULL) == 0)
 		return (0);

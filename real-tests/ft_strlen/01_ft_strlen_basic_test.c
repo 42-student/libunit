@@ -6,13 +6,13 @@
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 23:21:11 by smargine          #+#    #+#             */
-/*   Updated: 2025/09/07 01:56:23 by smargine         ###   ########.fr       */
+/*   Updated: 2025/09/07 02:09:32 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
 
-int ft_strlen_basic_test(void)
+int	ft_strlen_basic_test(void)
 {
 	if (ft_strlen("42Berlin") == 8)
 		return (0);
