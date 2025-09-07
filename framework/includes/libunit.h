@@ -6,7 +6,7 @@
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:30:07 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/07 15:23:15 by smargine         ###   ########.fr       */
+/*   Updated: 2025/09/07 15:56:29 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,8 @@ typedef struct s_unit_test
 int		strlen_launcher(void);
 int		launch_tests(t_unit_test *testlist);
 void	load_test(t_unit_test *testlist, char *name, void *test);
+int		print_status(int status);
+void	print_result(int passed, int total);
+void	print_signals(int status);
 
 #endif

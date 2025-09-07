@@ -6,21 +6,19 @@
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:18:03 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/07 15:26:03 by smargine         ###   ########.fr       */
+/*   Updated: 2025/09/07 15:56:58 by mmillhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
 
-static int	print_status(int status);
-static void	print_result(int passed, int total);
 static void	exit_timeout(int sig);
+static void	child(t_unit_test *testlist, int i);
 
 int	launch_tests(t_unit_test *testlist)
 {
 	int	i;
 	int	pid;
-	int	ret;
 	int	status;
 	int	passed;
 
@@ -30,12 +28,7 @@ int	launch_tests(t_unit_test *testlist)
 	{
 		pid = fork();
 		if (pid == 0)
-		{
-			signal(SIGALRM, &exit_timeout);
-			alarm(TIMEOUT_SEC);
-			ret = testlist[i].test();
-			exit(ret);
-		}
+			child(testlist, i);
 		write(1, testlist[i].name, ft_strlen(testlist[i].name));
 		while (wait(&status) > 0)
 			;
@@ -48,7 +41,7 @@ int	launch_tests(t_unit_test *testlist)
 
 void	load_test(t_unit_test *testlist, char *name, void *test)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (testlist[i].test)
@@ -59,49 +52,14 @@ void	load_test(t_unit_test *testlist, char *name, void *test)
 	return ;
 }
 
-static int	print_status(int status)
+static void	child(t_unit_test *testlist, int i)
 {
-	if (WIFSIGNALED(status))
-	{
-		if (WTERMSIG(status) == SIGSEGV)
-			write(1, RED " [SEGV] >>> Segfault\n" RESET, 30);
-		if (WTERMSIG(status) == SIGBUS)
-			write(1, RED " [BUS] >>> Bus error\n" RESET, 30);
-		if (WTERMSIG(status) == SIGABRT)
-			write(1, RED " [ABRT] >>> Abort signal\n" RESET, 34);
-		if (WTERMSIG(status) == SIGFPE)
-			write(1, RED " [FPE] >>> Arithmetic error\n" RESET, 37);
-		if (WTERMSIG(status) == SIGPIPE)
-			write(1, RED " [PIPE] >>> Pipe error\n" RESET, 32);
-		if (WTERMSIG(status) == SIGILL)
-			write(1, RED " [ILL] >>>  Illegal operation\n" RESET, 39);
-	}
-	else
-	{
-		if (WEXITSTATUS(status) == 0)
-		{
-			write(1, GREEN " [OK]\n" RESET, 15);
-			return (0);
-		}
-		if (WEXITSTATUS(status) == 124)
-			write(1, RED " [TIMEOUT]\n" RESET, 20);
-		else
-			write(1, RED " [KO]\n" RESET, 15);
-	}
-	return (1);
-}
+	int	ret;
 
-static void	print_result(int passed, int total)
-{
-	write(1, "passed ", 7);
-	ft_putnbr_fd(passed, 1);
-	write(1, "/", 1);
-	ft_putnbr_fd(total, 1);
-	if (passed == total)
-		write(1, GREEN " [OK]\n" RESET, 15);
-	else
-		write(1, RED " [KO]\n" RESET, 15);
-	write(1, "\n", 1);
+	signal(SIGALRM, &exit_timeout);
+	alarm(TIMEOUT_SEC);
+	ret = testlist[i].test();
+	exit (ret);
 }
 
 static void	exit_timeout(int sig)
