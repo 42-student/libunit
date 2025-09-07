@@ -1,12 +1,10 @@
 MAKEFLAGS += --no-print-directory
 
-
 # Defining Colors
 GREEN := \033[0;32m
 RED := \033[0;31m
 CYAN := \033[36m
 RESET := \033[0m
-
 
 NAME = libunit.a
 CC = cc

@@ -11,11 +11,6 @@ NAME = unit_test
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -Iincludes
 
-# GET_LIBFT_REPO = https://github.com/tpandya42/Libft.git
-# LIBFT_DIR = libft
-# LIBFT = $(LIBFT_DIR)/libft.a
-# LIBFT_INCLUDES = -I$(LIBFT_DIR)/includes
-
 SRC_DIR = basic_tests
 OBJ_DIR = obj
 MAIN = main.c
@@ -43,28 +38,9 @@ LIBFT = libft.a
 # for including libunit.h
 CFLAGS += -I$(FRAMEWORK_DIR)/includes -I$(FRAMEWORK_DIR)/ -I$(LIBFT_DIR)
 
-
 RM = rm -f
 
 all: $(FRAMEWORK) $(NAME)
-
-# $(NAME): $(OBJS)
-# 	@# Getting libft from Github if it's not present
-# 	@if [ ! -d "$(LIBFT_DIR)" ]; then \
-# 		echo "Cloning libft from $(GET_LIBFT_REPO)..."; \
-# 		git clone $(GET_LIBFT_REPO) $(LIBFT_DIR); \
-# 	fi
-# 	@# Making it...
-# 	@if [ -f $(LIBFT_DIR)/Makefile ]; then \
-# 		make -C $(LIBFT_DIR); \
-# 	fi
-# 	@if [ -f $(LIBFT) ]; then \
-# 		ar rcs $@ $(OBJS) $(LIBFT); \
-# 	else \
-# 		ar rcs $@ $(OBJS); \
-# 	fi	
-# 	@echo "$(CYAN)LIBUNIT BUILT!!!!$(RESET)";
-#
 
 $(NAME):$(OBJS) $(FRAMEWORK) $(LIBFT_DIR)/$(LIBFT)
 	@echo "$(CYAN)Linking $(NAME) with $(FRAMEWORK) and libft.a$(RESET)"
@@ -87,11 +63,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 
 $(OBJ_DIR)/main.o: $(MAIN) | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
-
-.PHONY: get_libft
-
-get_libft:
-	@echo "Local libft expected at $(LIBFT_DIR). No clone performed."
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
