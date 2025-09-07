@@ -6,7 +6,7 @@
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:30:07 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/07 15:56:29 by mmillhof         ###   ########.fr       */
+/*   Updated: 2025/09/07 16:51:30 by smargine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_unit_test
 	char	*name;
 }	t_unit_test;
 
-int		strlen_launcher(void);
 int		launch_tests(t_unit_test *testlist);
 void	load_test(t_unit_test *testlist, char *name, void *test);
 int		print_status(int status);

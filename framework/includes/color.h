@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpandya <tpandya@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 16:26:46 by tpandya           #+#    #+#             */
-/*   Updated: 2025/09/06 23:49:07 by mmillhof         ###   ########.fr       */
+/*   Updated: 2025/09/07 16:52:23 by smargine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,6 @@
 # define BOLD    "\033[1m"
 # define UNDERLINE "\033[4m"
 
-/*
-* RED:       Error/critical warnings
-* GREEN:     Prompt/success messages
-* YELLOW:    warnings/debug
-* BLUE:      info messages
-* MAGENTA:   Execution debug
-* CYAN:      FD, Parsing and Tokenization Debug
-*/
 // --- Text colors --- //
 # define RED     "\033[31m"    
 # define GREEN   "\033[32m"   
