@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   basic_tests.h                                      :+:      :+:    :+:   */
+/*   09_timeout_test.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smargine <smargine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/06 12:10:04 by mmillhof          #+#    #+#             */
-/*   Updated: 2025/09/07 14:12:48 by smargine         ###   ########.fr       */
+/*   Created: 2025/09/07 14:11:05 by smargine          #+#    #+#             */
+/*   Updated: 2025/09/07 14:12:33 by smargine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASIC_TESTS_H
-# define BASIC_TESTS_H
+#include "basic_tests.h"
+#include "libunit.h"
 
-# include "libunit.h"
-
-int	basic_tests_launcher(void);
-int	ok_test(void);
-int	ko_test(void);
-int	segv_test(void);
-int	buserr_test(void);
-int	sigabrt_test(void);
-int	sigfpe_test(void);
-int	sigpipe_test(void);
-int	illegal_test(void);
-int	timeout_test(void);
-
-#endif
+int	timeout_test(void)
+{
+	while(1)
+		;
+	return (0);
+}
