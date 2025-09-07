@@ -1,3 +1,6 @@
+MAKEFLAGS += --no-print-directory
+
+
 # Defining Colors
 GREEN := \033[0;32m
 RED := \033[0;31m
@@ -50,11 +53,14 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
 clean:
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
+	@make -C$(LIBFT_DIR) clean
+	@echo "$(CYAN)>>>>>Cleaning<<<<<$(RESET)"
 
 fclean: clean
-	$(RM) $(NAME)
-	-rm -rf $(OBJ_DIR)
+	@$(RM) $(NAME)
+	@-rm -rf $(OBJ_DIR)
+	@echo "$(GREEN)>>>>>Everything Cleaned Successfully<<<<<$(RESET)"
 
 re: fclean all
 

@@ -1,3 +1,6 @@
+MAKEFLAGS += --no-print-directory -s
+
+
 CFILES := ft_isalpha.c \
 			ft_isdigit.c \
 			ft_isalnum.c \
@@ -60,16 +63,16 @@ NAME := libft.a
 all: $(NAME)
 
 $(NAME): $(OFILES)
-	ar rcs $(NAME) $(OFILES)
+	@ar rcs $(NAME) $(OFILES)
 
 bonus: $(NAME) $(BONUSOFILES)
-	ar rcs $(NAME) $(BONUSOFILES)
+	@ar rcs $(NAME) $(BONUSOFILES)
 
 clean:
-	rm -f $(OFILES) $(BONUSOFILES)
+	@rm -f $(OFILES) $(BONUSOFILES)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re:	fclean all
 

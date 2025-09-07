@@ -1,10 +1,18 @@
+MAKEFLAGS += --no-print-directory
+
 # Defining Colors
 GREEN := \033[0;32m
 RED := \033[0;31m
 CYAN := \033[36m
 RESET := \033[0m
 
+define LOGO
+__   ____ ___  _    __   ____ ____ 
+| |  |___\| .\ || \ | \|\|___\|_ _\
+| |__| /  | .<_||_|\|  \|| /    || 
+|___/|/   |___/|___/|/\_/|/     |/ 
 
+endef
 
 NAME = unit_test
 CC = cc
@@ -54,7 +62,7 @@ all: $(FRAMEWORK) $(NAME)
 # 	@echo "$(CYAN)LIBUNIT BUILT!!!!$(RESET)";
 #
 
-$(NAME): $(OBJS) $(FRAMEWORK) $(LIBFT_DIR)/$(LIBFT)
+$(NAME):$(OBJS) $(FRAMEWORK) $(LIBFT_DIR)/$(LIBFT)
 	@echo "$(CYAN)Linking $(NAME) with $(FRAMEWORK) and libft.a$(RESET)"
 	@$(CC) $(CFLAGS) $(OBJS) $(FRAMEWORK) $(LIBFT_DIR)/$(LIBFT) -o $@
 	@echo "$(GREEN)Built $(NAME) ✔$(RESET)"
@@ -87,15 +95,20 @@ $(OBJ_DIR):
 test: all
 	$(EXEC)
 
+logo: 
+	@printf "%b\n" "$(LOGO)"
+
 clean:
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
 	@make -C$(LIBFT_DIR) clean
 	@if [ -d $(FRAMEWORK_DIR) ]; then $(MAKE) -C $(FRAMEWORK_DIR) clean; fi
+	@echo "$(CYAN)Cleaning Done$(RESET)"
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 	@if [ -d $(FRAMEWORK_DIR) ]; then $(MAKE) -C $(FRAMEWORK_DIR) fclean || true; fi
-	rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)
+	@echo "$(CYAN)Everything Cleaned Successfully$(RESET)"
 
 re: fclean all
 
